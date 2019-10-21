@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+    couchdb:
+        build: ./couchdb
+        networks:
+            - theater
+    sinatra:
+        build: ./sinatra
+        networks:
+            - theater
+        ports:
+            - "80:4567"
+networks:
+    theater:
+        driver: bridge
