@@ -4,6 +4,7 @@ DB_HOST = 'couchdb'
 DB_PORT = 5984
 DB_DBNAME = '/presentation'
 DOCS_DIR = './docs'
+DDOCS_DIR = './ddocs'
 
 require 'sinatra'
 require 'net/http'
@@ -13,10 +14,27 @@ configure do
     set :bind, '0.0.0.0'
 end
 
-def create_databases()
-    success = true
+##
+# Attempts an operation, safely catching any exceptions.
+#
+# Expects a block that returns [success, log]. Said block should use the << operator to append to the log and return
+# success=true or success=false depending on the outcome of the operation. Any exceptions will automatically return
+# success=false.
+def try_operation(&block)
+    log = ""
     begin
-        events = "Creating databases....\n"
+        yield(log)
+    rescue Exception => e
+        log << e.message + '\n'
+        success = false
+        return success, log
+    end
+end
+
+def create_databases()
+    try_operation do |log|
+        success = true
+        log << "Creating databases\n"
         dbs_to_create = [
             "_users",
             "_replicator",
@@ -33,25 +51,24 @@ def create_databases()
             response = Net::HTTP.start(uri.hostname, uri.port, {}) do |http|
                 http.request(request)
             end
-            events += "\t#{db_name}: #{response.code} #{response.msg}\n"
+            log << "\t#{db_name}: #{response.code} #{response.msg}\n"
             if response.code.to_i < 200 || response.code.to_i > 299
                 success = false
             end
         end
-    rescue Exception => e
-        events += e.message + '\n'
-        success = false
+        return success, log
     end
-    return success, events
 end
 
-def load_docs()
-    success = true
-    events = "Loading documents....\n"
-    begin
-        Dir.each_child(DOCS_DIR) do |f|
-            events += "\t#{f}: "
-            filepath = File.join(DOCS_DIR, f)
+##
+# Parses each Ruby file in dir to JSON and PUTs it to the database.
+def put_docs(dir)
+    try_operation do |log|
+        success = true
+        log << "Loading documents in #{dir}\n"
+        Dir.each_child(dir) do |f|
+            log << "\t#{f}: "
+            filepath = File.join(dir, f)
             if f.end_with?(".rb") && File.exists?(filepath) && !File.directory?(filepath)
                 # Read the file into a Ruby hash (incredibly unsafe, obviously) and convert to JSON
                 hash = eval(IO.read(filepath))
@@ -60,34 +77,37 @@ def load_docs()
                 uri = URI::HTTP.build(
                     host: DB_HOST,
                     port: DB_PORT,
-                    path: DB_DBNAME
+                    path: DB_DBNAME + '/' + hash[:_id]
                 )
 
-                # Send the POST request to create the corresponding document
-                response = Net::HTTP.post(
-                    uri,
-                    json,
-                    'Content-Type': 'application/json'
-                )
+                # Send the PUT request to create the corresponding document
+                request = Net::HTTP::Put.new(uri)
+                response = Net::HTTP.start(uri.hostname, uri.port, {}) do |http|
+                    http.request(request, json)
+                end
 
                 # Record the result.
-                events += "#{response.code} #{response.message}\n"
+                log << "#{response.code} #{response.message}\n"
                 if response.code.to_i < 200 || response.code.to_i > 299
                     success = false
                 end
             end
         end
-    rescue Exception => e
-        events += e.message + "\n"
-        success = false
+        return success, log
     end
-    return success, events
+end
+
+def load_docs()
+    put_docs(DOCS_DIR)
+end
+
+def load_ddocs()
+    put_docs(DDOCS_DIR)
 end
 
 $first_run = true
 get '/' do
     if $first_run == true
-        $first_run = false
 
         # Send a temporary redirect to run first-run code, e.g. to create databsaes.
         redirect "/first_run", 307
@@ -102,15 +122,18 @@ get '/first_run' do
     response = ""
     success = true
 
-    db_success, db_response = create_databases
-    success &= db_success
-    response += db_response
-
-    doc_success, doc_response = load_docs
-    success &= doc_success
-    response += doc_response
+    [
+        :create_databases,
+        :load_docs,
+        :load_ddocs
+    ].each do |meth|
+        succ, resp = send(meth)
+        success &= succ
+        response << resp
+    end
 
     if success
+        $first_run = false
         redirect '/', 301
     else
         response
