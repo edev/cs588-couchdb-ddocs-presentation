@@ -4,6 +4,8 @@ services:
         build: ./couchdb
         networks:
             - theater
+        ports:
+            - "5984:5984"
     sinatra:
         build: ./sinatra
         networks:
