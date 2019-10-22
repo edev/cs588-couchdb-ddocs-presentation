@@ -7,7 +7,8 @@ WORKDIR $APP_HOME
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-COPY pages pages
+COPY docs docs
+COPY ddocs ddocs
 COPY app.rb .
 
 EXPOSE 4567 4567

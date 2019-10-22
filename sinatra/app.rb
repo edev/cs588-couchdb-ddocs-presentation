@@ -3,7 +3,7 @@
 DB_HOST = 'couchdb'
 DB_PORT = 5984
 DB_DBNAME = '/presentation'
-PAGES_DIR = './pages'
+DOCS_DIR = './docs'
 
 require 'sinatra'
 require 'net/http'
@@ -45,13 +45,13 @@ def create_databases()
     return success, events
 end
 
-def load_slides()
+def load_docs()
     success = true
-    events = "Loading slides....\n"
+    events = "Loading documents....\n"
     begin
-        Dir.each_child(PAGES_DIR) do |f|
+        Dir.each_child(DOCS_DIR) do |f|
             events += "\t#{f}: "
-            filepath = File.join(PAGES_DIR, f)
+            filepath = File.join(DOCS_DIR, f)
             if f.end_with?(".rb") && File.exists?(filepath) && !File.directory?(filepath)
                 # Read the file into a Ruby hash (incredibly unsafe, obviously) and convert to JSON
                 hash = eval(IO.read(filepath))
@@ -106,9 +106,9 @@ get '/first_run' do
     success &= db_success
     response += db_response
 
-    slide_success, slide_response = load_slides
-    success &= slide_success
-    response += slide_response
+    doc_success, doc_response = load_docs
+    success &= doc_success
+    response += doc_response
 
     if success
         redirect '/', 301
