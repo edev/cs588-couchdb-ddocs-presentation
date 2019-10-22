@@ -105,6 +105,19 @@ def load_ddocs()
     put_docs(DDOCS_DIR)
 end
 
+##
+# This method requests the nav_menu list of the menu_items view and returns it.
+def navigation()
+    uri = URI::HTTP.build(
+        host: DB_HOST,
+        port: DB_PORT,
+        path: '/' + DB_DBNAME + '/_design/loose_change/_list/nav_menu/menu_items'
+    )
+    return Net::HTTP.get(uri)
+rescue Exception => e
+    return e.message
+end
+
 $first_run = true
 get '/' do
     if $first_run == true
@@ -114,7 +127,8 @@ get '/' do
     end
 
     # Net::HTTP.get(DB_HOST, '/', DB_PORT)
-    "Welcome!"
+    navbar = navigation()
+    navbar
 end
 
 get '/first_run' do
