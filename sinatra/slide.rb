@@ -11,9 +11,6 @@ def show_slide(docid)
 
     navbar = navigation()
 
-    markdown_renderer = Redcarpet::Render::HTML.new(render_options = {})
-    markdown = Redcarpet::Markdown.new(markdown_renderer, extensions = {})
-
     template = ERB.new IO.read('slide.erb')
     template.result(binding)
 end

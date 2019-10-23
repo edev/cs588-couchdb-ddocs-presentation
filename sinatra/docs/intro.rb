@@ -4,10 +4,18 @@
     title: "Introduction",
     order: 1,
     content: <<~END,
-        CouchDB in 30 seconds or less
+        <p>
+            CouchDB in 60 seconds or less:
+        </p>
 
-        * Document-oriented DB
-        * Native HTTP API
+        <ul>
+            <li>Document-oriented DB</li>
+            <li>Interaction: HTTP/JSON API</li>
+            <li>CAP Theorem: AP</li>
+            <li>Multi-Version Concurrency Control (MVCC)</li>
+            <li>Document-level ACID semantics</li>
+            <li>"Killer" feature: offline use</li>
+        </ul>
     END
     links: 
     [

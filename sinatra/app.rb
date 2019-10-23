@@ -10,7 +10,6 @@ require 'sinatra'
 require 'net/http'
 require 'json'
 require 'erb'
-require 'redcarpet'
 require_relative 'firstrun'
 require_relative 'slide'
 

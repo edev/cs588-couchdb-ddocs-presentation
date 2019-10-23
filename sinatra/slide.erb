@@ -27,7 +27,7 @@
                 <% end %>
 
                 <% if doc.has_key? "content" %>
-                    <%= markdown.render(doc["content"]) %>
+                    <%= doc["content"] %>
                 <% end %>
 
                 <%= links %>
