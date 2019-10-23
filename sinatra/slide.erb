@@ -13,7 +13,7 @@
         <article>
             <% if doc.respond_to? :to_str %>
                 <%# We're in an error state: doc is a string, not a hash. %>
-                <ht>
+                <h1>
                     Error
                 </h1>
                 <p>
@@ -25,9 +25,12 @@
                         <%= doc["title"] %>
                     </h1>
                 <% end %>
+
                 <% if doc.has_key? "content" %>
                     <%= markdown.render(doc["content"]) %>
                 <% end %>
+
+                <%= links %>
             <% end %>
         </article>
     </body>

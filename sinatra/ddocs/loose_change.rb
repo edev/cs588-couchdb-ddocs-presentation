@@ -1,5 +1,47 @@
 {
     _id: "_design/loose_change",
+    shows: {
+        slide: <<~END,
+            function (doc, req) {
+                var slide = {
+                    "uri": null,
+                    "title": null,
+                    "content": null,
+                    "links": null
+                };
+                uri = title = content = links = null;
+                if (doc._id) {
+                    slide.uri = doc._id;
+                }
+                if (doc.title) {
+                    slide.title = doc.title;
+                }
+                if (doc.content) {
+                    slide.content = doc.content;
+                }
+                if (doc.links) {
+                    slide.links = doc.links;
+                }
+                return {
+                    "json": slide
+                };
+            }
+        END
+        links: <<~END
+            function (doc, req) {
+                var response = "";
+                if (doc.links) {
+                    response += '<div id="links">\\n<h2>\\nLinks\\n</h2>\\n<ul>\\n';
+                    doc.links.forEach(function(elem) {
+                        /* Loop through [title, uri] pairs, generating HTML links. */
+                        response += '<li>\\n<a href="' + elem[1] + '">' + elem[0] + '</a>\\n</li>\\n';
+                    });
+                    response += '</ul>\\n</div>\\n';
+                }
+                return response;
+            }
+        END
+    },
     lists: {
         nav_menu: <<~END
             function (head, req) {
@@ -27,5 +69,5 @@
             END
         }
     },
-    "language": "javascript"
+    language: "javascript"
 }
