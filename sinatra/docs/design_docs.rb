@@ -32,6 +32,10 @@
         </pre>
 
         <strong>TODO UPDATE</strong>
+
+        <p>
+            This Web app uses all 6 types of functions. Let's see how.
+        </p>
     END
     links: 
     [

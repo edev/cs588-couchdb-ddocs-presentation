@@ -2,7 +2,7 @@
     _id: "views",
     slide: true,
     title: "View functions",
-    order: 3,
+    order: 4,
     content: <<~END,
         Views = map-reduce indexes.
     END

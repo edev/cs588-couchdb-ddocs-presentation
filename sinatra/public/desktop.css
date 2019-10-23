@@ -12,7 +12,7 @@ article {
 }
 
 nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 280px;
@@ -43,19 +43,24 @@ article {
 }
 
 h1 {
-    margin-top: 0
+    font-size: 300%;
+    margin: 0
 }
 
-article .column {
+article .column, article .subcolumn {
     float: left;
 }
 
-article .column>h2 {
-    margin-top: 0;
+article .subcolumn + .subcolumn {
+    margin-left: 120px;
 }
 
-article .column+.column {
-    margin-left: 40px;
+article h2 {
+    margin-top: 2em;
+}
+
+article .column>h3 {
+    margin-top: 0;
 }
 
 #links {
@@ -64,4 +69,9 @@ article .column+.column {
 
 #links ul {
     list-style-type: none;
+}
+
+pre {
+    margin-top: 1.5em;
+    font-size: 133.33%;
 }

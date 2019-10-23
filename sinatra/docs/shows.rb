@@ -2,20 +2,93 @@
     _id: "shows",
     slide: true,
     title: "Show functions",
-    order: 4,
+    order: 3,
     content: <<~END,
-        Process a single document and return a result (e.g. HTML, JSON).
-
-        2 examples:
-
-        1. Get slide (JSON)
-        2. Show links (HTML)
+        <p>
+            Show functions process a single document and return a result (e.g. JSON, HTML).
+        </p>
 
         <div class="column">
             <h2>
-                CouchDB
+                Example 1: slide JSON
             </h2>
+
+            <p>
+                Each slide is stored in its own CouchDB document named by its path (e.g. "shows").
+            </p>
+
+            <p>
+                Some of document fields hold content to render, but others are for internal use, like menu order.
+            </p>
+
+            <p>
+                In a more real-world case, there might be sensitive fields that need to stay private.
+            </p>
+
+            <p>
+                So instad of directly querying the document, we ask CouchDB to "show" it:
+            </p>
+
             <pre>
+            GET http://couchdb:5984/presentation/_design/loose_change/_show/slide/intro
+            </pre>
+
+            <div class="subcolumn">
+                <h3>
+                    Document as stored
+                </h3>
+                <pre>
+        {
+            "_id": "intro",
+            "_rev": "1-2a9ef6e68db72f37ac95940c6e91cf4d",
+            "slide": true,
+            "title": "Introduction",
+            "order": 1,
+            "content": "&lt;p&gt;CouchDB in 60...",
+            "links": [
+                [
+                    "CouchDB",
+                    "http://couchdb.apache.org"
+                ],
+                [
+                    "CouchDB documentation",
+                    "http://docs.couchdb.org/"
+                ]
+            ]
+        }
+                </pre>
+            </div>
+
+            <div class="subcolumn">
+                <h3>
+                    CouchDB's reply to Web app
+                </h3>
+                <pre>
+        {
+            "uri": "intro",
+            "title": "Introduction",
+            "content": "&lt;p&gt;CouchDB in 60...",
+            "links": [
+                [
+                    "CouchDB",
+                    "http://couchdb.apache.org"
+                ],
+                [
+                    "CouchDB documentation",
+                    "http://docs.couchdb.org/"
+                ]
+            ]
+        };
+                </pre>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="subcolumn">
+                <h3>
+                    CouchDB
+                </h3>
+                <pre>
         function (doc, req) {
             var slide = {
                 "uri": null,
@@ -40,14 +113,14 @@
                 "json": slide
             };
         }
-            </pre>
-        </div>
+                </pre>
+            </div>
 
-        <div class="column">
-            <h2>
-                Web app
-            </h2>
-            <pre>
+            <div class="subcolumn">
+                <h3>
+                    Web app
+                </h3>
+                <pre>
         &lt;article&gt;
             &lt;% if doc.respond_to? :to_str %&gt;
                 &lt;h1&gt;
@@ -64,13 +137,20 @@
                 &lt;% end %&gt;
 
                 &lt;% if doc.has_key? "content" %&gt;
-                    &lt;%= markdown.render(doc["content"]) %&gt;
+                    &lt;%= doc["content"] %&gt;
                 &lt;% end %&gt;
 
                 &lt;%= links %&gt;
             &lt;% end %&gt;
         &lt;/article&gt;
-            </pre>
+                </pre>
+            </div>
+        </div>
+
+        <div class="column">
+            <h2>
+                Example 2: show "Links" (as HTML)
+            </h2>
         </div>
     END
     links: 

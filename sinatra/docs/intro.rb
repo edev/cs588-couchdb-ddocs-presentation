@@ -1,7 +1,7 @@
 {
     _id: "intro",
     slide: true,
-    title: "Introduction",
+    title: "CouchDB",
     order: 1,
     content: <<~END,
         <p>
