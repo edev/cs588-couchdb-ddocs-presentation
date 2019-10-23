@@ -9,7 +9,8 @@ RUN bundle install
 
 COPY docs docs
 COPY ddocs ddocs
-COPY app.rb .
+COPY *.rb *.erb ./
+COPY public public
 
 EXPOSE 4567 4567
 

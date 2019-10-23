@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <% if doc.respond_to?(:has_key?) && doc.has_key?("title") %>
+            <title><%= doc["title"] %></title>
+        <% else %>
+            <title>Untitled Slide</title>
+        <% end %>
+        <link rel="stylesheet" type="text/css" href="desktop.css" />
+    </head>
+    <body>
+        <%= navbar %>
+
+        <% if doc.respond_to? :to_str %>
+            <%# We're in an error state: doc is a string, not a hash. %>
+            <ht>
+                Error
+            </h1>
+            <p>
+                <%= doc %>
+            </p>
+        <% else %>
+            <% if doc.has_key? "title" %>
+                <h1>
+                    <%= doc["title"] %>
+                </h1>
+            <% end %>
+            <% if doc.has_key? "content" %>
+                <%= markdown.render(doc["content"]) %>
+            <% end %>
+        <% end %>
+    </body>
+</html>
