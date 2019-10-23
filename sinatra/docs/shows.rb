@@ -26,7 +26,7 @@
             </p>
 
             <p>
-                So instad of directly querying the document, we ask CouchDB to "show" it:
+                So instead of directly querying the document, we ask CouchDB to "show" it:
             </p>
 
             <pre>
@@ -61,32 +61,7 @@
 
             <div class="subcolumn">
                 <h3>
-                    CouchDB's reply to Web app
-                </h3>
-                <pre>
-        {
-            "uri": "intro",
-            "title": "Introduction",
-            "content": "&lt;p&gt;CouchDB in 60...",
-            "links": [
-                [
-                    "CouchDB",
-                    "http://couchdb.apache.org"
-                ],
-                [
-                    "CouchDB documentation",
-                    "http://docs.couchdb.org/"
-                ]
-            ]
-        };
-                </pre>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="subcolumn">
-                <h3>
-                    CouchDB
+                    CouchDB Show function
                 </h3>
                 <pre>
         function (doc, req) {
@@ -115,10 +90,38 @@
         }
                 </pre>
             </div>
+        </div>
+
+        <div class="column">
+            <p>
+                The Web app receives exactly the information it needs, formatted ideally for display.
+            </p>
+            <div class="subcolumn">
+                <h3>
+                    CouchDB's reply to Web app
+                </h3>
+                <pre>
+        {
+            "uri": "intro",
+            "title": "Introduction",
+            "content": "&lt;p&gt;CouchDB in 60...",
+            "links": [
+                [
+                    "CouchDB",
+                    "http://couchdb.apache.org"
+                ],
+                [
+                    "CouchDB documentation",
+                    "http://docs.couchdb.org/"
+                ]
+            ]
+        };
+                </pre>
+            </div>
 
             <div class="subcolumn">
                 <h3>
-                    Web app
+                    Web app template
                 </h3>
                 <pre>
         &lt;article&gt;
@@ -147,10 +150,28 @@
             </div>
         </div>
 
-        <div class="column">
+        <div class="column" style="clear:both">
             <h2>
                 Example 2: show "Links" (as HTML)
             </h2>
+            <p>
+                Using a template library is almost always a good idea, but CouchDB <em>does</em> support HTML<br />
+                output through Show functions as well. Here's an example that's clearly a bad idea:
+            </p>
+            <pre>
+        function (doc, req) {
+            var response = "";
+            if (doc.links) {
+                response += '&lt;div id="links"&gt;\\n&lt;h2&gt;\\nLinks\\n&lt;/h2&gt;\\n&lt;ul&gt;\\n';
+                doc.links.forEach(function(elem) {
+                    /* Loop through [title, uri] pairs, generating HTML links. */
+                    response += '&lt;li&gt;\\n&lt;a href="' + elem[1] + '"&gt;' + elem[0] + '&lt;/a&gt;\\n&lt;/li&gt;\\n';
+                });
+                response += '&lt;/ul&gt;\\n&lt;/div&gt;\\n';
+            }
+            return response;
+        }
+            </pre>
         </div>
     END
     links: 
