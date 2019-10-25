@@ -40,7 +40,7 @@
                 <pre>
         {
             "_id": "intro",
-            "_rev": "1-2a9ef6e68db72f37ac95940c6e91cf4d",
+            "_rev": "1-2a9ef6e68db72f37a...",
             "slide": true,
             "title": "Introduction",
             "order": 1,
