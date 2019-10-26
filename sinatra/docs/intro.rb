@@ -14,6 +14,7 @@
             <li>CAP Theorem: AP</li>
             <li>Multi-Version Concurrency Control (MVCC)</li>
             <li>Document-level ACID semantics</li>
+            <li>Peer-to-peer clustering</li>
             <li>"Killer" feature: offline use</li>
         </ul>
     END
