@@ -1,83 +1,128 @@
-/* SECTION: Navigation */
+/* Global */
+    /* Text */
+        body {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            color: rgb(66, 61, 49);
+        }
 
-body {
-    font-size: 150%;
-    font-family: Georgia, serif;
-    background-color: rgb(255, 235, 191);
-    background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-    color: rgb(66, 61, 49);
-}
+        h1 {
+            font-size: 72px;
+        }
 
-article {
-    margin-left: 300px;
-}
+        h2 {
+            font-size: 36px;
+        }
 
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100%;
-    background-color: rgb(105, 3, 0);
-    background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 30px);
-}
+        h3, h4, h5, h6 {
+            font-size: 30px;
+        }
 
-nav, nav a {
-    color: rgb(224, 211, 185);
-    text-decoration: none;
-}
+        h1, h2, h3, h4, h5, h6 {
+            color: rgb(89, 82, 66);
+        }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 10px;
-    padding-top: 40px;
-}
+    /* Colors */
+        body {
+            background-color: rgb(255, 235, 191);
+            background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+        }
 
-nav li {
-    padding-bottom: 0.75em;
-}
+    /* Position */
+        h1 {
+            margin: 0;
+        }
 
-/* SECTION: Slide */
+/* Navigation sidebar */
+    /* Text */
+        nav {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            color: rgb(224, 211, 185);
+        }
 
-article {
-    padding: 10px;
-}
+        nav a {
+            text-decoration: none;
+            color: rgb(224, 211, 185);
+        }
 
-h1, h2, h3, h4, h5, h6 {
-    color: rgb(89, 82, 66);
-}
+    /* Colors */
+        nav {
+            background-color: rgb(105, 3, 0);
+            background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 30px);
+        }
 
-h1 {
-    font-size: 300%;
-    margin: 0;
-}
+    /* Position */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+        }
 
-article .column, article .subcolumn {
-    float: left;
-}
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 20px;
+            padding-top: 40px;
+        }
 
-article .subcolumn + .subcolumn {
-    margin-left: 120px;
-}
+        nav ul li {
+            padding-bottom: 0.75em;
+        }
 
-article h2 {
-    margin-top: 2em;
-}
+/* Article */
+    /* Position */
+        article {
+            margin-left: 300px;
+        }
 
-article .column>h3 {
-    margin-top: 0;
-}
+        article {
+            padding: 10px;
+        }
 
-#links {
-    clear: both;
-}
+        article h2 {
+            margin-top: 2em;
+        }
 
-#links ul {
-    list-style-type: none;
-}
+        article ul {
+            margin-left: 40px;
+        }
 
-pre {
-    margin-top: 1.5em;
-    font-size: 133.33%;
-}
+        article ul li {
+            margin-bottom: 1em;
+        }
+
+        article pre {
+            margin-top: 1.5em;
+        }
+
+/* Article Column: Position */
+    article .column, article .subcolumn {
+        float: left;
+    }
+
+    article .subcolumn + .subcolumn {
+        margin-left: 120px;
+    }
+
+    article .column>h3 {
+        margin-top: 0;
+    }
+
+/* Article Links */
+    /* Text */
+        #links ul {
+            list-style-type: none;
+        }
+
+    /* Color */
+        #links a {
+            color: rgb(105, 3, 0);
+        }
+
+    /* Position */
+        #links {
+            clear: both;
+        }
