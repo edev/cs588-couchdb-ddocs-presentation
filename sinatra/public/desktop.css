@@ -73,6 +73,11 @@
         }
 
 /* Article */
+    /* Color */
+        article pre {
+            border-left: 10px solid rgb(66, 61, 49);
+        }
+
     /* Position */
         article {
             margin-left: 300px;
@@ -96,20 +101,22 @@
 
         article pre {
             margin-top: 1.5em;
+            padding: 10px 0 10px 10px;
         }
 
-/* Article Column: Position */
-    article .column, article .subcolumn {
-        float: left;
-    }
+/* Article Column */
+    /* Position */
+        article .column, article .subcolumn {
+            float: left;
+        }
 
-    article .subcolumn + .subcolumn {
-        margin-left: 120px;
-    }
+        article .subcolumn + .subcolumn {
+            margin-left: 120px;
+        }
 
-    article .column>h3 {
-        margin-top: 0;
-    }
+        article .column>h3 {
+            margin-top: 0;
+        }
 
 /* Article Links */
     /* Text */

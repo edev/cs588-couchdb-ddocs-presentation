@@ -29,15 +29,15 @@
                 So instead of directly querying the document, we ask CouchDB to "show" it:
             </p>
 
-            <pre>
-            GET http://couchdb:5984/presentation/_design/loose_change/_show/slide/intro
-            </pre>
+        <pre>
+        GET http://couchdb:5984/presentation/_design/loose_change/_show/slide/intro
+        </pre>
 
             <div class="subcolumn">
                 <h3>
                     Document as stored
                 </h3>
-                <pre>
+        <pre>
         {
             "_id": "intro",
             "_rev": "1-2a9ef6e68db72f37a...",
@@ -56,14 +56,14 @@
                 ]
             ]
         }
-                </pre>
+        </pre>
             </div>
 
             <div class="subcolumn">
                 <h3>
                     CouchDB Show function
                 </h3>
-                <pre>
+        <pre>
         function (doc, req) {
             var slide = {
                 "uri": null,
@@ -88,7 +88,7 @@
                 "json": slide
             };
         }
-                </pre>
+        </pre>
             </div>
         </div>
 
@@ -100,7 +100,7 @@
                 <h3>
                     CouchDB's reply to Web app
                 </h3>
-                <pre>
+        <pre>
         {
             "uri": "intro",
             "title": "Introduction",
@@ -116,14 +116,14 @@
                 ]
             ]
         };
-                </pre>
+        </pre>
             </div>
 
             <div class="subcolumn">
                 <h3>
                     Web app template
                 </h3>
-                <pre>
+        <pre>
         &lt;article&gt;
             &lt;% if doc.respond_to? :to_str %&gt;
                 &lt;h1&gt;
@@ -146,7 +146,7 @@
                 &lt;%= links %&gt;
             &lt;% end %&gt;
         &lt;/article&gt;
-                </pre>
+        </pre>
             </div>
         </div>
 
@@ -158,7 +158,7 @@
                 Using a template library is almost always a good idea, but CouchDB <em>does</em> support HTML<br />
                 output through Show functions as well. Here's an example that's clearly a bad idea:
             </p>
-            <pre>
+        <pre>
         function (doc, req) {
             var response = "";
             if (doc.links) {
@@ -171,7 +171,7 @@
             }
             return response;
         }
-            </pre>
+        </pre>
         </div>
     END
     links: 
