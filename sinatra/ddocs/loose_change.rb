@@ -4,15 +4,11 @@
         slide: <<~END,
             function (doc, req) {
                 var slide = {
-                    "uri": null,
                     "title": null,
                     "content": null,
                     "links": null
                 };
-                uri = title = content = links = null;
-                if (doc._id) {
-                    slide.uri = doc._id;
-                }
+                title = content = links = null;
                 if (doc.title) {
                     slide.title = doc.title;
                 }

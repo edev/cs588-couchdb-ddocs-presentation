@@ -1,21 +1,25 @@
 {
     _id: "intro",
     slide: true,
-    title: "CouchDB",
+    title: "Introduction",
     order: 1,
     content: <<~END,
         <p>
-            CouchDB in 60 seconds or less:
+            <em>Presenter: Dylan Laufenberg, Portland State University, Fall 2019</em>
+        </p>
+
+        <p>
+            CouchDB at a glance:
         </p>
 
         <ul>
-            <li>Document-oriented DB</li>
+            <li>Storage model: Document store</li>
             <li>Interaction: HTTP/JSON API</li>
             <li>CAP Theorem: AP</li>
-            <li>Multi-Version Concurrency Control (MVCC)</li>
-            <li>Document-level ACID semantics</li>
-            <li>Peer-to-peer clustering</li>
-            <li>"Killer" feature: offline use</li>
+            <li>Consistency: Multi-Version Concurrency Control (MVCC)</li>
+            <li>Transactions: Document-level ACID semantics</li>
+            <li>Clustering: peer-to-peer</li>
+            <li>Key feature: offline use</li>
         </ul>
     END
     links: 

@@ -8,9 +8,7 @@
             Design documents are special documents that hold JavaScript functions for tasks like building indexes and validating document updates.
         </p>
 
-        <p>
-            For instance:
-        </p>
+        <h2>Example</h2>
 
         <pre>
         {
@@ -33,10 +31,6 @@
 
         <p>
             <strong>TODO UPDATE</strong>
-        </p>
-
-        <p>
-            This Web app uses all 6 types of functions. Let's see how.
         </p>
     END
     links: 

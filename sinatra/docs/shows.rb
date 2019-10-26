@@ -10,7 +10,7 @@
 
         <div class="column">
             <h2>
-                Example 1: slide JSON
+                Example: slide JSON
             </h2>
 
             <p>
@@ -66,15 +66,11 @@
         <pre>
         function (doc, req) {
             var slide = {
-                "uri": null,
                 "title": null,
                 "content": null,
                 "links": null
             };
-            uri = title = content = links = null;
-            if (doc._id) {
-                slide.uri = doc._id;
-            }
+            title = content = links = null;
             if (doc.title) {
                 slide.title = doc.title;
             }
@@ -94,7 +90,7 @@
 
         <div class="column">
             <p>
-                The Web app receives exactly the information it needs, formatted ideally for display.
+                The Web app receives only the information it needs.
             </p>
             <div class="subcolumn">
                 <h3>
@@ -102,20 +98,19 @@
                 </h3>
         <pre>
         {
-            "uri": "intro",
-            "title": "Introduction",
-            "content": "&lt;p&gt;CouchDB in 60...",
-            "links": [
-                [
-                    "CouchDB",
-                    "http://couchdb.apache.org"
-                ],
-                [
-                    "CouchDB documentation",
-                    "http://docs.couchdb.org/"
-                ]
+          "title": "Introduction",
+          "content": "&lt;p&gt;&lt;em&gt;Presenter...",
+          "links": [
+            [
+              "CouchDB",
+              "http://couchdb.apache.org"
+            ],
+            [
+              "CouchDB documentation",
+              "http://docs.couchdb.org/"
             ]
-        };
+          ]
+        }
         </pre>
             </div>
 
@@ -148,30 +143,6 @@
         &lt;/article&gt;
         </pre>
             </div>
-        </div>
-
-        <div class="column" style="clear:both">
-            <h2>
-                Example 2: show "Links" (as HTML)
-            </h2>
-            <p>
-                Using a template library is almost always a good idea, but CouchDB <em>does</em> support HTML<br />
-                output through Show functions as well. Here's an example that's clearly a bad idea:
-            </p>
-        <pre>
-        function (doc, req) {
-            var response = "";
-            if (doc.links) {
-                response += '&lt;div id="links"&gt;\\n&lt;h2&gt;\\nLinks\\n&lt;/h2&gt;\\n&lt;ul&gt;\\n';
-                doc.links.forEach(function(elem) {
-                    /* Loop through [title, uri] pairs, generating HTML links. */
-                    response += '&lt;li&gt;\\n&lt;a href="' + elem[1] + '"&gt;' + elem[0] + '&lt;/a&gt;\\n&lt;/li&gt;\\n';
-                });
-                response += '&lt;/ul&gt;\\n&lt;/div&gt;\\n';
-            }
-            return response;
-        }
-        </pre>
         </div>
     END
     links: 
