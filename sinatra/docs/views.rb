@@ -9,31 +9,27 @@
         </p>
 
         <p>
-            We can use them as secondary indexes to look up data quickly by different fields.
+            Views are stored as B-trees, so we can use them to build secondary indexes on any set of document fields.
         </p>
 
         <p>
-            Views are stored as B-trees, so they can act as secondary indexes.
+            They also let us transform our data and give us fast access to the results in logarithmic time.
         </p>
 
         <p>
-            They also let us transform our data and still let us access the results in logarithmic time.
+            A view's map function processes one document at a time. It can call emit(key, value) zero or more times to add rows to the eventual result.
         </p>
 
         <p>
-            Map functions in views can call emit(key, value) any number of times for a given document.
+            A map function is only allowed to address data in the document it's currently processing. This restriction guarantees that each emitted row only depends on the contents of one document. This allows CouchDB to update views incrementally when documents change.
         </p>
 
-        <p>
-            Map functions are only allowed to address data in the current document they're processing.
-        </p>
+        <h2>
+            Example: generating a navigation menu
+        </h2>
 
         <p>
-            That lets it track which rows came from each document, so when documents are updated, it can update views incrementally.
-        </p>
-
-        <p>
-            We'll use a simple view to generate the navigation menu. This view only needs a map function:
+            We'll use a simple view to generate the navigation menu. This one only needs a map function:
         </p>
 
         <pre>
@@ -92,12 +88,12 @@
     links: 
     [
         [
-            "Design Documents TODO",
-            "http://docs.couchdb.org/en/stable/ddocs/index.html"
+            "Design Documents: View Functions",
+            "http://docs.couchdb.org/en/stable/ddocs/ddocs.html#view-functions"
         ],
         [
-            "API Reference TODO",
-            "http://docs.couchdb.org/en/stable/api/ddoc/common.html"
+            "API Reference",
+            "http://docs.couchdb.org/en/stable/api/ddoc/views.html"
         ]
     ]
 }

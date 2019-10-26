@@ -31,7 +31,9 @@
         }
         </pre>
 
-        <strong>TODO UPDATE</strong>
+        <p>
+            <strong>TODO UPDATE</strong>
+        </p>
 
         <p>
             This Web app uses all 6 types of functions. Let's see how.
