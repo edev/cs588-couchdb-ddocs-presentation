@@ -30,7 +30,7 @@
             </p>
 
         <pre>
-        GET http://couchdb:5984/presentation/_design/loose_change/_show/slide/intro
+        GET /presentation/_design/loose_change/_show/slide/intro
         </pre>
 
             <div class="subcolumn">

@@ -1,5 +1,29 @@
 {
     _id: "_design/loose_change",
+    filters: {
+        watch: <<~END,
+            function (doc, req) {
+                if (doc.watch && doc.watch == true) {
+                    return true
+                }
+                return false
+            }
+        END
+    },
+    lists: {
+        nav_menu: <<~END
+            function (head, req) {
+                start({
+                    'headers': { 'Content-Type': 'text/html' }
+                });
+                send('<nav>\\n<ul>\\n');
+                while (row = getRow()) {
+                    send('<li>\\n<a href=\"' + row.value[1] + '\">' + row.value[0] + '</a>\\n</li>\\n');
+                }
+                send('</ul>\\n</nav>\\n');
+            }
+        END
+    },
     shows: {
         slide: <<~END,
             function (doc, req) {
@@ -38,17 +62,31 @@
             }
         END
     },
-    lists: {
-        nav_menu: <<~END
-            function (head, req) {
-                start({
-                    'headers': { 'Content-Type': 'text/html' }
-                });
-                send('<nav>\\n<ul>\\n');
-                while (row = getRow()) {
-                    send('<li>\\n<a href=\"' + row.value[1] + '\">' + row.value[0] + '</a>\\n</li>\\n');
+    updates: {
+        watch: <<~END
+            function (doc, req) {
+                if (!doc) {
+                    return [
+                        null,
+                        {
+                            'code': 400,
+                            'json': {
+                                'error': 'missed',
+                                'reason': 'No document to update'
+                            }
+                        }
+                    ]
                 }
-                send('</ul>\\n</nav>\\n');
+                doc.watch = true;
+                return [
+                    doc, 
+                    {
+                        'code': 201,
+                        'json': {
+                            'status': 'Updated'
+                        }
+                    }
+                ]
             }
         END
     },

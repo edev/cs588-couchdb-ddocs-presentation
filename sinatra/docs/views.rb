@@ -2,7 +2,7 @@
     _id: "views",
     slide: true,
     title: "Views",
-    order: 4,
+    order: 8,
     content: <<~END,
         <p>
             Views in CouchDB let us transform data with map and reduce functions.
@@ -51,7 +51,7 @@
         </p>
 
         <pre>
-        GET couchdb/presentation/_design/loose_change/_view/menu_items
+        GET /presentation/_design/loose_change/_view/menu_items
 
         {
           "total_rows": 4,

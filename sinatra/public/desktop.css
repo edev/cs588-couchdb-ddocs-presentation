@@ -33,6 +33,10 @@
             margin: 0;
         }
 
+        .clear {
+            clear: both;
+        }
+
 /* Navigation sidebar */
     /* Text */
         nav {
@@ -78,6 +82,10 @@
             border-left: 10px solid rgb(66, 61, 49);
         }
 
+        article pre .highlight-code {
+            color: red;
+        }
+
     /* Position */
         article {
             margin-left: 300px;
@@ -112,10 +120,6 @@
 
         article .subcolumn + .subcolumn {
             margin-left: 120px;
-        }
-
-        article .column>h3 {
-            margin-top: 0;
         }
 
 /* Article Links */
