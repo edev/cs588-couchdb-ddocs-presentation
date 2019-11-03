@@ -1,8 +1,8 @@
 {
     _id: "intro",
     slide: true,
-    title: "Introduction",
     order: 1,
+    title: "Introduction",
     content: <<~END,
         <p>
             <em>Presenter: Dylan Laufenberg, Portland State University, Fall 2019</em>

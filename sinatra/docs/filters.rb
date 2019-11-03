@@ -1,8 +1,8 @@
 {
     _id: "filters",
     slide: true,
+    order: 5,
     title: "Filter functions",
-    order: 6,
     content: <<~END,
         <p>
             You may have noticed that setting "watch" to true doesn't actually do much.
@@ -74,7 +74,7 @@
             </p>
 
         <pre>
-        GET  /presentation/_changes?filter=loose_change/watch
+        GET  /presentation/_changes<span class="highlight-code">?filter=loose_change/watch</span>
         </pre>
                 
             <div class="subcolumn">
@@ -127,7 +127,7 @@
             "http://docs.couchdb.org/en/stable/ddocs/ddocs.html#update-functions"
         ],
         [
-            "API Reference",
+            "API Reference: Filter Functions",
             "http://docs.couchdb.org/en/stable/api/ddoc/render.html#db-design-design-doc-update-update-name-doc-id"
         ]
     ]

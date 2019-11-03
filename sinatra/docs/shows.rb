@@ -1,8 +1,8 @@
 {
     _id: "shows",
     slide: true,
-    title: "Show functions",
     order: 3,
+    title: "Show functions",
     content: <<~END,
         <p>
             Show functions process a single document and return a result (e.g. JSON, HTML).
@@ -30,7 +30,7 @@
             </p>
 
         <pre>
-        GET /presentation/_design/loose_change/_show/slide/intro
+        GET /presentation/_design/loose_change/_show/<span class="highlight-code">slide</span>/<span class="highlight-code">intro</span>
         </pre>
 
             <div class="subcolumn">
@@ -42,8 +42,8 @@
             "_id": "intro",
             "_rev": "1-2a9ef6e68db72f37a...",
             "slide": true,
-            "title": "Introduction",
             "order": 1,
+            "title": "Introduction",
             "content": "&lt;p&gt;CouchDB in 60...",
             "links": [
                 [
@@ -130,12 +130,12 @@
             &lt;% else %&gt;
                 &lt;% if doc.has_key? "title" %&gt;
                     &lt;h1&gt;
-                        &lt;%= doc["title"] %&gt;
+                        <span class="highlight-code">&lt;%= doc["title"] %&gt;</span>
                     &lt;/h1&gt;
                 &lt;% end %&gt;
 
                 &lt;% if doc.has_key? "content" %&gt;
-                    &lt;%= doc["content"] %&gt;
+                    <span class="highlight-code">&lt;%= doc["content"] %&gt;</span>
                 &lt;% end %&gt;
 
                 &lt;%= links %&gt;
@@ -152,7 +152,7 @@
             "http://docs.couchdb.org/en/stable/ddocs/ddocs.html#show-functions"
         ],
         [
-            "API Reference",
+            "API Reference: Show Functions",
             "http://docs.couchdb.org/en/stable/api/ddoc/render.html#db-design-design-doc-show-show-name-doc-id"
         ]
     ]

@@ -1,8 +1,8 @@
 {
     _id: "updates",
     slide: true,
+    order: 4,
     title: "Update functions",
-    order: 5,
     content: <<~END,
         <p>
             Update functions let us run server-side logic to update documents in arbitrary ways.
@@ -26,7 +26,7 @@
             </p>
 
         <pre>
-        POST /presentation/_design/loose_change/_update/watch/_design/loose_change
+        POST /presentation/_design/loose_change/_update/<span class="highlight-code">watch</span>/<span class="highlight-code">_design/loose_change</span>
         </pre>
 
             <div class="subcolumn">
@@ -48,7 +48,7 @@
                         }
                     ]
                 }
-                doc.watch = true;
+                <span class="highlight-code">doc.watch = true;</span>
                 return [
                     doc, 
                     {
@@ -89,7 +89,7 @@
             "http://docs.couchdb.org/en/stable/ddocs/ddocs.html#update-functions"
         ],
         [
-            "API Reference",
+            "API Reference: Update Functions",
             "http://docs.couchdb.org/en/stable/api/ddoc/render.html#db-design-design-doc-update-update-name-doc-id"
         ]
     ]

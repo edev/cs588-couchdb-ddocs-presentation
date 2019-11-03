@@ -1,8 +1,8 @@
 {
     _id: "design_docs",
     slide: true,
-    title: "Design Documents",
     order: 2,
+    title: "Design Documents",
     content: <<~END,
         <p>
             Design documents are special documents that hold JavaScript functions for tasks like building indexes and validating document updates.
@@ -40,7 +40,7 @@
             "http://docs.couchdb.org/en/stable/ddocs/index.html"
         ],
         [
-            "API Reference",
+            "API Reference: Design Documents",
             "http://docs.couchdb.org/en/stable/api/ddoc/common.html"
         ]
     ]

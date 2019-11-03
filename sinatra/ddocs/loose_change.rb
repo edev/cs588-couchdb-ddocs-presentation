@@ -11,16 +11,17 @@
         END
     },
     lists: {
-        nav_menu: <<~END
+        nav_menu: <<~END,
             function (head, req) {
-                start({
-                    'headers': { 'Content-Type': 'text/html' }
+                provides('html', function () {
+                    var body = '<nav>\\n<ul>\\n';
+                    while (row = getRow()) {
+                        body += '<li>\\n<a href=\"' + row.value[1] + '\">' + row.value[0] + '</a>\\n</li>\\n';
+                    }
+                    body += '</ul>\\n</nav>\\n';
+
+                    return body
                 });
-                send('<nav>\\n<ul>\\n');
-                while (row = getRow()) {
-                    send('<li>\\n<a href=\"' + row.value[1] + '\">' + row.value[0] + '</a>\\n</li>\\n');
-                }
-                send('</ul>\\n</nav>\\n');
             }
         END
     },
