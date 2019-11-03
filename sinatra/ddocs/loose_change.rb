@@ -102,6 +102,18 @@
                     }
                 }
             END
+        },
+        authors_to_books: {
+            map: <<~END
+                function (doc) {
+                    if (doc.book && doc.book === true 
+                        && doc.authors && isArray(doc.authors)) {
+                        doc.authors.forEach (function (author) {
+                            emit (author, doc._id);
+                        });
+                    }
+                }
+            END
         }
     },
     language: "javascript"
