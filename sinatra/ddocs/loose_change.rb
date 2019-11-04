@@ -103,6 +103,17 @@
                 }
             END
         },
+        a2b: {
+            map: <<~END
+                function (doc) {
+                    if (doc._id.slice(0, 3) == 'b2a') {
+                        if (doc.book && doc.author) {
+                            emit(doc.author, doc.book);
+                        }
+                    }
+                }
+            END
+        },
         authors_to_books: {
             map: <<~END
                 function (doc) {
