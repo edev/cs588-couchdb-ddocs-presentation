@@ -10,7 +10,6 @@ require 'sinatra'
 require 'net/http'
 require 'json'
 require 'erb'
-require_relative 'firstrun'
 require_relative 'slide'
 
 configure do
@@ -30,27 +29,8 @@ rescue Exception => e
     return e.message
 end
 
-get '/first_run' do
-    headers "Content-Type" => "text/plain"
-    response = ""
-    success = true
-
-    FIRST_RUN_TASKS.each do |meth|
-        succ, resp = send(meth)
-        success &= succ
-        response << resp
-    end
-
-    if success
-        $first_run = false
-        redirect '/', 301
-    else
-        response
-    end
-end
-
 get '/' do
-    show_slide('intro') # TODO Change to redirect to last-viewed page
+    show_slide('intro')
 end
 
 get '/:docid' do

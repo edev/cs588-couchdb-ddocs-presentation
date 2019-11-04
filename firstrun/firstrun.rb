@@ -1,8 +1,11 @@
-FIRST_RUN_TASKS = [
-    :create_databases,
-    :load_docs,
-    :load_ddocs
-]
+require 'json'
+require 'net/http'
+
+DB_HOST = 'couchdb'
+DB_PORT = 5984
+DB_DBNAME = '/presentation'
+DOCS_DIR = './docs'
+DDOCS_DIR = './ddocs'
 
 ##
 # Attempts an operation, safely catching any exceptions.
@@ -95,4 +98,25 @@ end
 def load_ddocs()
     put_docs(DDOCS_DIR)
 end
+
+puts "Hello"
+loop do
+    begin
+        STDOUT.puts "Checking if CouchDB is up yet..."
+        STDOUT.flush
+        Net::HTTP.get(URI::HTTP.build(host: DB_HOST, port: DB_PORT, path: '/'))
+        break
+    rescue
+        sleep(1)
+    end
+end
+
+STDOUT.puts "CouchDB is up!"
+STDOUT.flush
+STDOUT.puts create_databases
+STDOUT.flush
+STDOUT.puts load_docs
+STDOUT.flush
+STDOUT.puts load_ddocs
+STDOUT.flush
 

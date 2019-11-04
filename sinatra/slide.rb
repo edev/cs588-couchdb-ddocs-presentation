@@ -1,11 +1,4 @@
-$first_run = true
 def show_slide(docid)
-    if $first_run == true
-
-        # Send a temporary redirect to run first-run code, e.g. to create databsaes.
-        redirect "/first_run", 307
-    end
-
     doc = get_doc(docid)
     links = get_links(docid)
 

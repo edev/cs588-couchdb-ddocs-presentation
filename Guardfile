@@ -69,15 +69,10 @@
 #  end
 #end
 
+guard 'rake', :task => 'build_docs' do
+    watch /^firstrun/
+end
 
-guard 'rake', :task => 'quick_restart' do
-    watch /.*/
-#    [
-#        '.',
-#        'sinatra',
-#        'sinatra/ddocs',
-#        'sinatra/docs'
-#    ].each do |dir|
-#        watch dir
-#    end
+guard 'rake', :task => 'build_sinatra' do
+    watch /^sinatra/
 end

@@ -12,6 +12,10 @@ services:
             - theater
         ports:
             - "80:4567"
+    firstrun:
+        build: ./firstrun
+        networks:
+            - theater
 networks:
     theater:
         driver: bridge
