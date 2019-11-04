@@ -67,11 +67,12 @@ def put_docs(dir)
                 uri = URI::HTTP.build(
                     host: DB_HOST,
                     port: DB_PORT,
-                    path: DB_DBNAME + '/' + hash[:_id]
+                    path: DB_DBNAME
                 )
 
                 # Send the PUT request to create the corresponding document
-                request = Net::HTTP::Put.new(uri)
+                request = Net::HTTP::Post.new(uri)
+                request['Content-Type'] = 'application/json'
                 response = Net::HTTP.start(uri.hostname, uri.port, {}) do |http|
                     http.request(request, json)
                 end
