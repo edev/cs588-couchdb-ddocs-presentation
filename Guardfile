@@ -70,7 +70,7 @@
 #end
 
 
-guard 'rake', :task => 'run' do
+guard 'rake', :task => 'quick_restart' do
     watch /.*/
 #    [
 #        '.',
