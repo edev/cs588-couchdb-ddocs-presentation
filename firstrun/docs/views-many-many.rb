@@ -113,8 +113,8 @@
                     "title": "NoSQL Distilled",
                     "book": true,
                 }
-            ]</div>
-        }
+            ]
+        </div>}
         </pre>
 
             </div>
@@ -140,29 +140,26 @@
                     "name": "Martin Fowler",
                     "author": true
                 }
-            ]</div>
-        }
+            ]
+        </div>}
         </pre>
         
             </div>
 
-            <p>
+            <p class="clear">
                 This does give us all the information we need in a single query.
             </p>
 
             <p>
-                If we typically want all of an author's books and all information about every author,<br />
-                then this might be the best approach.
+                If we typically want all of an author's books and all information about every author, then this might be the best approach.
             </p>
 
             <p>
-                We do have to be very careful to keep both sets of documents updated &amp; consistent,<br />
-                without the benefit of transactions.
+                We do have to be very careful to keep both sets of documents updated &amp; consistent, without the benefit of transactions.
             </p>
 
             <p>
-                On the other hand, if we typically want only a small portion of that data, <br />
-                then we're stuck reading a lot of extra information.
+                On the other hand, if we typically want only a small portion of that data, then we're stuck reading a lot of extra information.
             </p>
 
             <p>
@@ -216,8 +213,23 @@
             </div>
 
             <p class="clear">
-                The way we incorpate book IDs into our junction table document IDs will cause our documents to sort by book ID,<br />
-                which lets us look up a book's authors with a range query.
+                Our document IDs are structured very carefully to make this scheme work:
+            </p>
+
+            <ul>
+                <li>
+                    First, we use a common prefix, "b2a/", so that the documents will sit side-by-side in our sorted database.
+                </li>
+                <li>
+                    Next is each book's ID, so that our document collection will be sorted by book ID. 
+                </li>
+                <li>
+                    Finally, we list the author ID simply to make each document ID unique.
+                </li>
+            </ul>
+
+            <p>
+                Because our collection is sorted by book ID, we can use range queries to look up a book's authors.
             </p>
 
             <p>
@@ -239,35 +251,13 @@
             <h2>
                 Option C: make a "junction table" view
             </h2>
-        </div>
-
-
-
-            
-
-        <div class="column">
-            <h2>
-                Example: many-to-many relationship
-            </h2>
 
             <p>
-                Consider the many-to-many relationship between authors and books.
+                Let's try a more straightforward approach.
             </p>
 
             <p>
-                One book may have many authors, and one person may author many books.
-            </p>
-
-            <p>
-                In order to access an author's book list, we need to store a list of books with each author.
-            </p>
-
-            <p>
-                And in order to access a book's author list, we need to store a list of authors with each book.
-            </p>
-
-            <p>
-                Or do we?
+                We'll store a list of authors with each book, which makes sense and preserves the order of authors.
             </p>
 
             <div class="subcolumn">
@@ -301,33 +291,49 @@
             "_id": "0321826620",
             "title": "NoSQL Distilled",
             "book": true,
-            "authors": [
+        <div class="highlight-code">    "authors": [
                 "pramod-j-sadalage",
                 "martin-fowler"
             ]
-        }
+        </div>}
 
         {
             "_id": "0134757599",
             "title": "Refactoring: Improving...",
             "book": true,
-            "authors": [
+        <div class="highlight-code">    "authors": [
                 "martin-fowler"
             ]
-        }
+        </div>}
         </pre>
         
             </div>
+
+            <p class="clear">
+                Any book's author list will be very short, so it's trivial to simply scan through the list as needed.<br />
+            </p>
+
         </div>
 
         <div class="column">
+            <h2>
+                Indexing books' authors
+            </h2>
+
+            <p>
+                Now we can use a simple, map-only view to index these author lists.
+            </p>
+
+            <p>
+                For each author of each book, we emit &lt;author, book ID&gt;:
+
         <pre>
         GET /presentation/_design/loose_change/_view/<span class="highlight-code">authors_to_books</span>
         </pre>
 
             <div class="subcolumn">
                 <h2>
-                    Map function
+                    Authors-to-books  view
                 </h2>
 
         <pre>
@@ -335,7 +341,7 @@
             if (doc.book && doc.book === true 
                 && doc.authors && isArray(doc.authors)) {
                 doc.authors.forEach (function (author) {
-                    emit (author, doc._id);
+                    <span class="highlight-code">emit (author, doc._id);</span>
                 });
             }
         }
@@ -375,8 +381,22 @@
         </div>
 
         <div class="column">
+            <h2>
+                Querying an author's books
+            </h2>
+
+            <p>
+                To see an author's books, we can ask the view for only keys matching an author ID.
+            </p>
+
+            <p>
+                If we need the full document for each book, the view can give us that, too:
+            </p>
+
         <pre>
         GET /presentation/_design/loose_change/_view/<span class="highlight-code">authors_to_books?key="martin-fowler"</span>
+
+        GET /presentation/_design/loose_change/_view/<span class="highlight-code">authors_to_books?key="martin-fowler"&amp;include_docs=true</span>
         </pre>
 
             <div class="subcolumn">
@@ -402,8 +422,49 @@
           ]
         }
         </pre>
-
             </div>
+
+            <div class="subcolumn">
+                <h3>
+                    Including book documents
+                </h3>
+                
+        <pre>
+        {
+          "total_rows": 3,
+          "offset": 0,
+          "rows": [
+            {
+              "id": "0134757599",
+              "key": "martin-fowler",
+              "value": "0134757599",
+              "doc": {
+                ...
+                "title": "Refactoring: Improving...",
+                "book": true,
+                ...
+              }
+            },
+            {
+              "id": "0321826620",
+              "key": "martin-fowler",
+              "value": "0321826620",
+              "doc": {
+                ...
+                "title": "NoSQL Distilled",
+                "book": true,
+                ...
+              }
+            }
+          ]
+        }
+        </pre>
+            </div>
+
+            <p class="clear">
+                The best part is that our view is automatically updated whenever documents change, so we don't<br />
+                have to worry about maintaining lots of denormalized data ourselves.
+            </p>
         </div>
     END
     links: 
