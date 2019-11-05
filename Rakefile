@@ -5,9 +5,7 @@ task :run do
 end
 
 task :build_sinatra do
-    sh 'sudo docker-compose stop sinatra'
-    sh 'sudo docker-compose build sinatra'
-    sh 'sudo docker-compose start sinatra'
+    sh 'sudo docker-compose up -d --build sinatra'
 end
 
 task :build_docs do
@@ -15,9 +13,7 @@ task :build_docs do
     sh 'curl -X DELETE http://localhost:5984/_replicator'
     sh 'curl -X DELETE http://localhost:5984/_global_changes'
     sh 'curl -X DELETE http://localhost:5984/presentation'
-    sh 'sudo docker-compose stop firstrun'
-    sh 'sudo docker-compose build firstrun'
-    sh 'sudo docker-compose start firstrun'
+    sh 'sudo docker-compose up -d --build firstrun'
 end
 
 task :stop do

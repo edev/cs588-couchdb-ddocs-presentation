@@ -7,9 +7,9 @@ WORKDIR $APP_HOME
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-COPY docs docs
-COPY ddocs ddocs
-COPY *.rb *.erb ./
+copy /firstrun.rb .
+COPY /ddocs/*.rb ddocs/
+COPY /docs/*.rb docs/
 
 CMD ["bundle", "exec", "ruby", "firstrun.rb"]
 
