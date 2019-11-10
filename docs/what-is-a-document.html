@@ -2,7 +2,7 @@
 <html>
     <head>
         
-            <title>HTTP API</title>
+            <title>What is a document?</title>
         
         <link rel="stylesheet" type="text/css" href="desktop.css" />
     </head>
@@ -13,34 +13,34 @@
 <a href="/">Welcome</a>
 </li>
 <li>
-<a href="what-is-couchdb">What is CouchDB?</a>
+<a href="what-is-couchdb.html">What is CouchDB?</a>
 </li>
 <li>
-<a href="what-is-a-document">What is a document?</a>
+<a href="what-is-a-document.html">What is a document?</a>
 </li>
 <li>
-<a href="http-api">HTTP API</a>
+<a href="http-api.html">HTTP API</a>
 </li>
 <li>
-<a href="design_docs">Design documents</a>
+<a href="design_docs.html">Design documents</a>
 </li>
 <li>
-<a href="shows">Show functions</a>
+<a href="shows.html">Show functions</a>
 </li>
 <li>
-<a href="updates">Update functions</a>
+<a href="updates.html">Update functions</a>
 </li>
 <li>
-<a href="filters">Filter functions</a>
+<a href="filters.html">Filter functions</a>
 </li>
 <li>
-<a href="views-map-only">Views: map-only</a>
+<a href="views-map-only.html">Views: map-only</a>
 </li>
 <li>
-<a href="views-many-many">Views: many-to-many relationships</a>
+<a href="views-many-many.html">Views: many-to-many relationships</a>
 </li>
 <li>
-<a href="questions">Questions?</a>
+<a href="questions.html">Questions?</a>
 </li>
 </ul>
 </nav>
@@ -50,31 +50,32 @@
             
                 
                     <h1>
-                        HTTP API
+                        What is a document?
                     </h1>
                 
 
                 
                     <p>
-    We interact with CouchDB through HTTP requests. 
+    A document is simply a JSON object associated with a key.
 </p>
 
 <p>
-    For instance, to retrieve our "what-is-a-document" slide from the "presentation" database:
+    The key is the official name of the document; it's how we look the document up in the database.
 </p>
-
-<pre>
-GET /presentation/what-is-a-document
-</pre>
 
 <p>
-    We get back the document we saw in the previous slide:
+    This presentation is actually stored in CouchDB, so let's take a look at the document that stores this slide.
 </p>
+
+<div clss="column">
+    <h2>
+        Example: this slide
+    </h2>
 
 <pre>
 {
     "_id": "what-is-a-document",                      <span class="comment">(Document key)</span>
-    "_rev": "1-da2bf1224f45b1d4560dd8e062f936c8",     <span class="comment">(Document revision)</span>
+    "_rev": "1-bb308e3c3e85bd5a17c97a3bcf8d77f6",     <span class="comment">(Document revision)</span>
     "slide": true,                                    <span class="comment">(Flags document as a slide)</span>
     "order": 2,                                       <span class="comment">(Order in the menu)</span>
     "title": "What is a document?",                   <span class="comment">(Title of slide)</span>
@@ -94,12 +95,24 @@ GET /presentation/what-is-a-document
 }
 </pre>
 
-We can easily send GET requests through the browser, so let's try it.
-
-
-                
+</div>
 
                 
+
+                <div id="links">
+<h2>
+Links
+</h2>
+<ul>
+<li>
+<a href="http://couchdb.apache.org">CouchDB</a>
+</li>
+<li>
+<a href="http://docs.couchdb.org/">CouchDB documentation</a>
+</li>
+</ul>
+</div>
+
             
         </article>
     </body>
