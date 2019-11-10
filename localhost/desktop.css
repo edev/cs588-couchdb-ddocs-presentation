@@ -1,0 +1,142 @@
+/* Global */
+    /* Text */
+        body {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            color: rgb(66, 61, 49);
+        }
+
+        h1 {
+            font-size: 64px;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        h3, h4, h5, h6 {
+            font-size: 26px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: rgb(89, 82, 66);
+        }
+
+    /* Colors */
+        body {
+            background-color: rgb(255, 235, 191);
+        }
+
+    /* Position */
+        h1 {
+            margin: 0;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+/* Navigation sidebar */
+    /* Text */
+        nav {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            color: rgb(224, 211, 185);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgb(224, 211, 185);
+        }
+
+    /* Colors */
+        nav {
+            background-color: rgb(105, 3, 0);
+            background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 30px);
+        }
+
+    /* Position */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 20px;
+            padding-top: 40px;
+        }
+
+        nav ul li {
+            padding-bottom: 0.75em;
+        }
+
+/* Article */
+    /* Color */
+        article pre {
+            border-left: 10px solid rgb(66, 61, 49);
+        }
+
+        article pre .highlight-code {
+            color: red;
+        }
+
+        article .comment {
+            color: blue;
+        }
+
+    /* Position */
+        article {
+            margin-left: 300px;
+        }
+
+        article {
+            padding: 10px;
+        }
+
+        article h2 {
+            margin-top: 2em;
+        }
+
+        article ul {
+            margin-left: 40px;
+        }
+
+        article ul li {
+            margin-bottom: 1em;
+        }
+
+        article pre {
+            margin-top: 1.5em;
+            padding: 10px 0 10px 10px;
+        }
+
+/* Article Column */
+    /* Position */
+        article .column, article .subcolumn {
+            float: left;
+        }
+
+        article .subcolumn + .subcolumn {
+            margin-left: 120px;
+        }
+
+/* Article Links */
+    /* Text */
+        #links ul {
+            list-style-type: none;
+        }
+
+    /* Color */
+        #links a {
+            color: rgb(105, 3, 0);
+        }
+
+    /* Position */
+        #links {
+            clear: both;
+        }
