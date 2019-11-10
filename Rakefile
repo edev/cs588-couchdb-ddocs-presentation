@@ -19,3 +19,7 @@ end
 task :stop do
     sh 'sudo docker-compose down -v'
 end
+
+task :mkpages do
+    sh 'wget -r localhost && rm -r docs && mv localhost docs'
+end
