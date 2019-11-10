@@ -48,7 +48,7 @@ get '/' do
     template.result(binding)
 end
 
-get '/:docid' do
+get '/:docid.html' do
     show_slide params[:docid]
 end
 

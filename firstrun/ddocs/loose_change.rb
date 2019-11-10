@@ -16,7 +16,7 @@
                 provides('html', function () {
                     var body = '<nav>\\n<ul>\\n<li>\\n<a href="/">Welcome</a>\\n</li>\\n';
                     while (row = getRow()) {
-                        body += '<li>\\n<a href=\"' + row.value[1] + '\">' + row.value[0] + '</a>\\n</li>\\n';
+                        body += '<li>\\n<a href=\"' + row.value[1] + '.html\">' + row.value[0] + '</a>\\n</li>\\n';
                     }
                     body += '</ul>\\n</nav>\\n';
 
