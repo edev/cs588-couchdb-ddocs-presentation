@@ -20,7 +20,7 @@ The following are required to build the containers:
 * Ruby
 * Bundler
 
-With these installed, simply type `docker-compose build && docker-compose up -` to build and launch the container group.
+With these installed, simply type `docker-compose build && docker-compose up -d` to build and launch the container group.
 
 ## GitHub Pages
 
