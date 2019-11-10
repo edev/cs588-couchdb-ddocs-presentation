@@ -1,7 +1,7 @@
 {
     _id: "shows",
     slide: true,
-    order: 3,
+    order: 5,
     title: "Show functions",
     content: <<~END,
         <p>
@@ -14,7 +14,7 @@
             </h2>
 
             <p>
-                Each slide is stored in its own CouchDB document named by its path (e.g. "shows").
+                As we know, each slide is stored in its own CouchDB document named by its path (e.g. "shows").
             </p>
 
             <p>
@@ -22,7 +22,7 @@
             </p>
 
             <p>
-                In a more real-world case, there might be sensitive fields that need to stay private.
+                In a more real-world case, there might also be sensitive fields that need to stay private.
             </p>
 
             <p>
@@ -30,7 +30,7 @@
             </p>
 
         <pre>
-        GET /presentation/_design/loose_change/_show/<span class="highlight-code">slide</span>/<span class="highlight-code">intro</span>
+        GET /presentation/_design/loose_change/_show/<span class="highlight-code">slide</span>/<span class="highlight-code">what-is-couchdb</span>
         </pre>
 
             <div class="subcolumn">
@@ -39,15 +39,15 @@
                 </h3>
         <pre>
         {
-            "_id": "intro",
-            "_rev": "1-2a9ef6e68db72f37a...",
+            "_id": "what-is-couchdb",
+            "_rev": "1-4c2171884a1e05c5846...",
             "slide": true,
             "order": 1,
-            "title": "Introduction",
-            "content": "&lt;p&gt;CouchDB in 60...",
+            "title": "What is CouchDB?",
+            "content": "&lt;p&gt;\\n    Next week...",
             "links": [
                 [
-                    "CouchDB",
+                    "CouchDB homepage",
                     "http://couchdb.apache.org"
                 ],
                 [

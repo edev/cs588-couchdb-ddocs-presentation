@@ -94,7 +94,7 @@
             </h2>
 
             <p>
-                One approach is to include a list of books with each author and a list of authors with each book.
+                The classical approach is to include a list of books with each author and a list of authors with each book.
             </p>
 
             <div class="subcolumn">
@@ -147,6 +147,10 @@
             </div>
 
             <p class="clear">
+                In relational terms, we have essentially denormalized our database.
+            </p>
+
+            <p>
                 This does give us all the information we need in a single query.
             </p>
 
@@ -173,7 +177,15 @@
             </h2>
 
             <p>
-                What if we make a set of documents that act like rows in a junction table? (Hint: this is a bad idea.)
+                What if we make a set of documents that act like rows in a junction table?
+            </p>
+
+            <p>
+                I assume I'm not the only one in the class who's thought about this.
+            </p>
+
+            <p>
+                Let's be clear: this is a really bad idea, but let's talk about why.
             </p>
 
             <div class="subcolumn">
@@ -239,7 +251,7 @@
 
             <p>
                 Now we can quickly query in either direction. Unfortunately, each book's authors are sorted alphabetically,<br />
-                which will definitely anger a lot of authors.
+                which will definitely anger a lot of authors. (It's possible to fix this, but there's a better way.)
             </p>
 
             <p>
@@ -325,7 +337,12 @@
             </p>
 
             <p>
-                For each author of each book, we emit &lt;author, book ID&gt;:
+                For each author of each book, we emit &lt;author, book ID&gt;.
+            </p>
+
+            <p>
+                This gives us a view, keyed by author ID, that lets us quickly look up an author's body of work.
+            </p>
 
         <pre>
         GET /presentation/_design/loose_change/_view/<span class="highlight-code">authors_to_books</span>

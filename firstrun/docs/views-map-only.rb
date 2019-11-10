@@ -1,7 +1,7 @@
 {
     _id: "views-map-only",
     slide: true,
-    order: 7,
+    order: 8,
     title: "Views: map-only",
     content: <<~END,
         <p>
@@ -30,7 +30,7 @@
             </p>
 
             <p>
-                The navigation menu on the left is actually generated from a simple view and a list function, which we'll cover shortly.
+                The navigation menu on the left is actually generated using a simple, map-only view.
             </p>
 
             <p>
@@ -69,27 +69,35 @@
 
         <pre>
         {
-          "total_rows": 7,
-          "offset": 0,
-          "rows": [
-            {
-              "id": "intro",
-              "key": 1,
-              "value": [
-                "Introduction",
-                "intro"
-              ]
-            },
-            {
-              "id": "design_docs",
-              "key": 2,
-              "value": [
-                "Design Documents",
-                "design_docs"
-              ]
-            },
-            ...
-          ]
+            "total_rows": 10,
+            "offset": 0,
+            "rows": [
+                {
+                    "id": "what-is-couchdb",
+                    "key": 1,
+                    "value": [
+                        "What is CouchDB?",
+                        "what-is-couchdb"
+                    ]
+                },
+                {
+                    "id": "what-is-a-document",
+                    "key": 2,
+                    "value": [
+                        "What is a document?",
+                        "what-is-a-document"
+                    ]
+                },
+                {
+                    "id": "http-api",
+                    "key": 3,
+                    "value": [
+                        "HTTP API",
+                        "http-api"
+                    ]
+                },
+                ...
+            ]
         }
         </pre>
 

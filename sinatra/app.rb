@@ -30,7 +30,22 @@ rescue Exception => e
 end
 
 get '/' do
-    show_slide('intro')
+    uri = URI::HTTP.build(
+        host: DB_HOST,
+        port: DB_PORT,
+        path: '/' + DB_DBNAME + '/_design/loose_change/_view/menu_items',
+        query: 'limit=1'
+    )
+    response = Net::HTTP.get_response(uri)
+    first_slide = 
+        if response.code == "200"
+            JSON.parse(response.body)
+        else
+            "Error retrieving links: " + response.body
+        end
+
+    template = ERB.new IO.read('homepage.erb')
+    template.result(binding)
 end
 
 get '/:docid' do

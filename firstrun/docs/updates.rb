@@ -1,11 +1,49 @@
 {
     _id: "updates",
     slide: true,
-    order: 4,
+    order: 6,
     title: "Update functions",
     content: <<~END,
         <p>
-            Update functions let us run server-side logic to update documents in arbitrary ways.
+            Update functions, like design documents, are terribly named.
+        </p>
+
+        <p>
+            If we want to update a document, we can simply:
+        </p>
+            
+        <ol>
+            <li>Retrieve it with an HTTP GET request,</li>
+            <li>Modify it as needed, and</li>
+            <li>Post it to CouchDB with an HTTP POST request.</li>
+        </ol>
+
+        <p>
+            We don't need any special functions to update documents.
+        </p>
+
+        <p>
+            What CouchDB calls update functions are sort of like stored procedures from relational databases.
+        </p>
+
+        <p>
+            They let us run server-side logic to update documents in arbitrary ways.
+        </p>
+
+        <p>
+            Since they run inside the database, any affected documents never touch the network.
+        </p>
+
+        <p>
+            As a result, these functions can be much faster.
+        </p>
+
+        <p>
+            Depending on the situation, avoiding network communication might be more secure as well.
+        </p>
+
+        <p>
+            Their much faster speed also helps avoid conflicts when documents change frequently.
         </p>
 
         <div class="column">

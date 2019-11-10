@@ -2,20 +2,20 @@
     /* Text */
         body {
             font-family: Georgia, serif;
-            font-size: 24px;
+            font-size: 20px;
             color: rgb(66, 61, 49);
         }
 
         h1 {
-            font-size: 72px;
+            font-size: 64px;
         }
 
         h2 {
-            font-size: 36px;
+            font-size: 32px;
         }
 
         h3, h4, h5, h6 {
-            font-size: 30px;
+            font-size: 26px;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -25,7 +25,6 @@
     /* Colors */
         body {
             background-color: rgb(255, 235, 191);
-            background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
         }
 
     /* Position */
@@ -41,7 +40,7 @@
     /* Text */
         nav {
             font-family: Georgia, serif;
-            font-size: 24px;
+            font-size: 20px;
             color: rgb(224, 211, 185);
         }
 
@@ -84,6 +83,10 @@
 
         article pre .highlight-code {
             color: red;
+        }
+
+        article .comment {
+            color: blue;
         }
 
     /* Position */

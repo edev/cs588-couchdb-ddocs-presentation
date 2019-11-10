@@ -1,7 +1,7 @@
 {
     _id: "filters",
     slide: true,
-    order: 5,
+    order: 7,
     title: "Filter functions",
     content: <<~END,
         <p>
@@ -50,6 +50,19 @@
           "pending": 0
         }
         </pre>
+
+        <p>
+            This feed essentially shows all the changes that take place in the database.
+        </p>
+
+        <p>
+            It's designed to talk to a process that's continually attached, like a logging daemon or RSS feed reader.
+        </p>
+
+        <p>
+            There are lots of caveats, but it works well for these use cases.
+        </p>
+
         </div>
 
         <div class="column">
@@ -58,11 +71,7 @@
             </h2>
 
             <p>
-                CouchDB provides filter functions for use cases just like ours.
-            </p>
-
-            <p>
-                A filter function checks each document in a changes feed against any logic we provide.
+                A filter function filters the changes feed. It checks each change against any logic we provide.
             </p>
 
             <p>
@@ -117,6 +126,7 @@
         </pre>
 
             </div>
+        </div>
 
 
     END
