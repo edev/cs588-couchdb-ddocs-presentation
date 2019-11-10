@@ -24,5 +24,5 @@ With these installed, simply type `docker-compose build && docker-compose up -d`
 
 ## GitHub Pages
 
-A static HTMl version of the presentation (**not** backed by CouchDB) is available at: [https://edev.github.io/cs588-couchdb-ddocs-presentation](https://edev.github.io/cs588-couchdb-ddocs-presentation)
+A static HTML version of the presentation (**not** backed by CouchDB) is available at: [https://edev.github.io/cs588-couchdb-ddocs-presentation](https://edev.github.io/cs588-couchdb-ddocs-presentation)
 
