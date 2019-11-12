@@ -22,7 +22,7 @@
             </h2>
 
             <p>
-                Let's start with a simple example that uses a map function but doesn't need a reduce funciton.
+                Let's start with a simple example that uses a map function but doesn't need a reduce function.
             </p>
 
             <p>
