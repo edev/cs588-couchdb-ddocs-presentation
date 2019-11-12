@@ -18,7 +18,7 @@
             </p>
 
             <p>
-                Some of document fields hold content to render, but others are for internal use, like menu order.
+                Some document fields hold content to render, but others are for internal use, like menu order.
             </p>
 
             <p>
